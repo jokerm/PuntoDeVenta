@@ -91,6 +91,11 @@ public class Administrador extends Controlador implements MouseListener, MouseMo
 	    		Departamento dep = new Departamento((WebDesktopPane)x.getParent());
 	    		dep.setManager(this.manager);
 	    		dep.updateTable();
+	    		break;
+	    	case "Productos":
+	    		Producto prod = new Producto((WebDesktopPane)x.getParent(),this.manager);
+	    		prod.updateTable();
+	    		break;
 	    	}
     	}
 	}

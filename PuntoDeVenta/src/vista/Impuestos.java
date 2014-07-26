@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class Impuestos extends WebInternalFrame {
 	private static final long serialVersionUID = 4338402715051733869L;
@@ -20,6 +21,7 @@ public class Impuestos extends WebInternalFrame {
 	 */
 	public Impuestos(DefaultTableModel modelo) {
 		super( "Impuestos",true, true, true, true );
+		setFrameIcon(new ImageIcon(Impuestos.class.getResource("/vista/recursos/tax.png")));
 		setBounds(100, 100, 450, 400);
 		getContentPane().setLayout(null);
 		
@@ -68,7 +70,7 @@ public class Impuestos extends WebInternalFrame {
 		getContentPane().add(btnAceptar);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 119, 420, 242);
+		scrollPane.setBounds(10, 119, 420, 226);
 		getContentPane().add(scrollPane);
 		
 		table = new WebTable();

@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import com.alee.laf.button.WebButton;
 import com.alee.laf.desktoppane.WebInternalFrame;
 import com.alee.laf.table.WebTable;
+import javax.swing.ImageIcon;
 
 public class Departamentos extends WebInternalFrame {
 	private static final long serialVersionUID = 4338402715051733869L;
@@ -19,6 +20,7 @@ public class Departamentos extends WebInternalFrame {
 	 */
 	public Departamentos(DefaultTableModel modelo) {
 		super( "Departamentos",true, true, true, true );
+		setFrameIcon(new ImageIcon(Departamentos.class.getResource("/vista/recursos/depa.png")));
 		setBounds(100, 100, 450, 400);
 		getContentPane().setLayout(null);
 		
@@ -67,7 +69,7 @@ public class Departamentos extends WebInternalFrame {
 		getContentPane().add(btnAceptar);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 119, 420, 242);
+		scrollPane.setBounds(10, 119, 420, 226);
 		getContentPane().add(scrollPane);
 		
 		table = new WebTable();

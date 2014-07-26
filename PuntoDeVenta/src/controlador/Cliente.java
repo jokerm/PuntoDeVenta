@@ -29,8 +29,8 @@ public class Cliente extends Controlador {
 				modelo.addRow(num);
 				modelo.setValueAt(res.getString("idcliente")	, i, 0);
 				modelo.setValueAt(res.getString("nombre")		, i, 1);
-				modelo.setValueAt(res.getString("credito")		, i, 2);
-				modelo.setValueAt(res.getString("descuento")+"%", i, 3);
+				modelo.setValueAt(res.getString("descuento")+"%", i, 2);
+				modelo.setValueAt(res.getString("credito")		, i, 3);
 				modelo.setValueAt(res.getString("adeuda")		, i, 4);
 				modelo.setValueAt(res.getString("abona")		, i, 5);
 				i++;

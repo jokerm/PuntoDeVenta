@@ -3,6 +3,7 @@ package vista;
 import javax.swing.*;
 
 import com.alee.laf.optionpane.WebOptionPane;
+import com.alee.managers.notification.NotificationManager;
 
 public class GUI {
    private static String salida = "";
@@ -240,6 +241,10 @@ public class GUI {
    
    public static void alert(String mensaje) {
       WebOptionPane.showMessageDialog(null, mensaje, "Error", WebOptionPane.ERROR_MESSAGE);
+   }
+   
+   public static void displayNotify(String mensaje) {
+	   NotificationManager.showNotification ( mensaje);
    }
 
    public static void displayOutput() {

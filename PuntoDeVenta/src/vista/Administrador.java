@@ -2,8 +2,9 @@ package vista;
 
 import java.awt.BorderLayout;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.Border;
 
 import java.awt.Toolkit;
 import java.io.IOException;
@@ -55,7 +56,9 @@ public class Administrador extends JFrame {
 		setTitle("Administrador");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Administrador.class.getResource("/vista/recursos/logo.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 600);
+		/*Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	    setBounds(0,0,screenSize.width, screenSize.height);*/
+	    this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		WebMenuBar menuBar = new WebMenuBar();
 		menuBar.setMenuBarStyle ( MenuBarStyle.standalone );
@@ -221,12 +224,17 @@ public class Administrador extends JFrame {
 		mntmAyuda.add(mntmAcercaDe);
 		
 		contentPane = new WebPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+//		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+		try {
+			contentPane.setBorder((Border) new CentredBackgroundBorder(ImageIO.read(Administrador.class.getResource("/vista/recursos/background.jpg"))));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		desktopPane = new WebDesktopPane();
-		desktopPane.setOpaque ( false );
+		desktopPane.setOpaque(false);
 		contentPane.add(desktopPane);
 		
 		this.setControlador(cont);
@@ -243,13 +251,14 @@ public class Administrador extends JFrame {
 		usersButton.addMouseMotionListener((MouseMotionListener) this.controlador);
 		desktopPane.add(usersButton);
 		
-		WebButton productsButton = new WebButton("Usuarios");
+		WebButton productsButton = new WebButton("Productos");
 		productsButton.setIcon(new ImageIcon(Administrador.class.getResource("/vista/recursos/compras3.png")));
-		productsButton.setText("Productos");
 		productsButton.setVerticalTextPosition(SwingConstants.BOTTOM);
 		productsButton.setRolloverDecoratedOnly(true);
 		productsButton.setHorizontalTextPosition(SwingConstants.CENTER);
 		productsButton.setBounds(150, 125, 100, 75);
+		productsButton.addMouseListener((MouseListener) this.controlador);
+		productsButton.addMouseMotionListener((MouseMotionListener) this.controlador);
 		desktopPane.add(productsButton);
 		
 		WebButton providersButton = new WebButton("Usuarios");

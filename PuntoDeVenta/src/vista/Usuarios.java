@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import com.alee.laf.button.WebButton;
 import com.alee.laf.desktoppane.WebInternalFrame;
 import com.alee.laf.table.WebTable;
+import javax.swing.ImageIcon;
 
 public class Usuarios extends WebInternalFrame {
 	private static final long serialVersionUID = -1351287826725759174L;
@@ -19,6 +20,7 @@ public class Usuarios extends WebInternalFrame {
 	 */
 	public Usuarios(DefaultTableModel modelo) {
 		super( "Usuarios",true, true, true, true );
+		setFrameIcon(new ImageIcon(Usuarios.class.getResource("/vista/recursos/group49.png")));
 		setBounds(100, 100, 450, 400);
 		getContentPane().setLayout(null);
 		
@@ -67,7 +69,7 @@ public class Usuarios extends WebInternalFrame {
 		getContentPane().add(btnAceptar);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 119, 420, 242);
+		scrollPane.setBounds(10, 119, 420, 226);
 		getContentPane().add(scrollPane);
 		
 		table = new WebTable();

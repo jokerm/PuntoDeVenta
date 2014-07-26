@@ -20,6 +20,10 @@ public class DataBaseManager {
 		stmt = c.createStatement();
 	}
 	
+	public Statement getNewStatement() throws SQLException {
+		return c.createStatement();
+	}
+	
 	public String getIdEmp() {
 		return idEmp;
 	}
@@ -35,6 +39,11 @@ public class DataBaseManager {
 		}
 		c.close();
 		return true;
+	}
+	
+	public int rowCount(String table) throws SQLException {
+		ResultSet rs = stmt.executeQuery("select count(*) as total from "+table);
+		return rs.getInt(1);
 	}
 	
 	public String getValueofDB(String req) throws SQLException {
@@ -228,7 +237,7 @@ public class DataBaseManager {
 				"ON DELETE NO ACTION "+
 				"ON UPDATE NO ACTION);";
 		stmt = c.createStatement();
-		System.out.println(stmt.executeUpdate(t1));
+		stmt.executeUpdate(t1);
 		stmt.executeUpdate(t2);
 		stmt.executeUpdate(t3);
 		stmt.executeUpdate(t4);
@@ -243,6 +252,7 @@ public class DataBaseManager {
 		stmt.executeUpdate(t13);
 		stmt.executeUpdate(t14);
 		
+		System.out.println("DB updated sucessful =)");
 		return true;
 	}
 	
@@ -263,7 +273,7 @@ public class DataBaseManager {
 		String t14 = "DROP TABLE IF EXISTS `moneda` ; ";
 		
 		stmt = c.createStatement();
-		System.out.println(stmt.executeUpdate(t1));
+		stmt.executeUpdate(t1);
 		stmt.executeUpdate(t2);
 		stmt.executeUpdate(t3);
 		stmt.executeUpdate(t4);
@@ -278,6 +288,7 @@ public class DataBaseManager {
 		stmt.executeUpdate(t13);
 		stmt.executeUpdate(t14);
 		
+		System.out.println("DB updated sucessful =)");
 		return onCreate();
 	}
 	
