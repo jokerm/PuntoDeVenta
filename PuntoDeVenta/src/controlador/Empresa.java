@@ -1,5 +1,6 @@
 package controlador;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -10,7 +11,7 @@ import vista.GUI;
 public class Empresa extends Controlador {
 	private DefaultTableModel modelo;
 	
-	public Empresa() throws ClassNotFoundException, SQLException {
+	public Empresa() throws ClassNotFoundException, SQLException, IOException {
 		//Start conn
 		this.manager = new DataBaseManager(null);
 		this.manager.onCreate();
@@ -104,11 +105,11 @@ public class Empresa extends Controlador {
 						if(empty) {			//If was empty, create user
 							this.manager.setInsert("insert into usuario values((select count(idusuario) from usuario)+1,"+ 
 									"'"+login.user.getText()+"','"+login.pass.getText()+"','admin','"+args[1]+"');");
-							new Administrador(this.manager);
+							new Administrador(this.manager,args[2]);
 							login.setIntentos(-1);
 											//Else, check if user match
 						} else if(this.manager.exists(sql)) {
-							new Administrador(this.manager);
+							new Administrador(this.manager,args[2]);
 							login.setIntentos(-1);
 						} else {
 							GUI.displayError("Usuario o password incorrecto", "Incorrect data");

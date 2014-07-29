@@ -25,7 +25,7 @@ public class MotorInicio {
 				try {
 					UIManager.setLookAndFeel ( WebLookAndFeel.class.getCanonicalName () );
 					
-					SERVER_SOCKET = new ServerSocket(1334);
+					SERVER_SOCKET = new ServerSocket(9999);
 					SERVER_SOCKET.isClosed();
 					WebLookAndFeel.setDecorateDialogs(true);
 					//new Selector();
@@ -34,6 +34,7 @@ public class MotorInicio {
 				} catch(IOException e) {
 					vista.GUI.displayError("No puede abrir la aplicacion mas de 1 vez",
 							"Aplicacion corriendo");
+					e.printStackTrace();
 					System.exit(0);
 				} catch (ClassNotFoundException | SQLException e) {
 					GUI.displayError("Se produjó un error con la base de datos", "DB Fail");

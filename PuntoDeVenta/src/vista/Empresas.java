@@ -12,11 +12,13 @@ import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class Empresas extends JFrame {
 
 	private static final long serialVersionUID = 8176415082213415549L;
-	private WebTable table;
+	private ZebraJTable table;
 	private controlador.Controlador controlador;
 
 	/**
@@ -31,10 +33,14 @@ public class Empresas extends JFrame {
 				controlador.dataToController("close");
 			}
 		});
-		setBounds(100, 100, 420, 410);
+		setBounds(100, 100, 600, 410);
 		getContentPane().setLayout(null);
 		
 		WebButton btnNewButton = new WebButton("Agregar");
+		btnNewButton.setRolloverDecoratedOnly(true);
+		btnNewButton.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnNewButton.setIcon(new ImageIcon(Empresas.class.getResource("/vista/recursos/addE.png")));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controlador.dataToController("add");
@@ -44,6 +50,10 @@ public class Empresas extends JFrame {
 		getContentPane().add(btnNewButton);
 		
 		WebButton btnBorrar = new WebButton("Borrar");
+		btnBorrar.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnBorrar.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnBorrar.setIcon(new ImageIcon(Empresas.class.getResource("/vista/recursos/delE.png")));
+		btnBorrar.setRolloverDecoratedOnly(true);
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(table.getSelectedRowCount() != 1) {
@@ -57,6 +67,10 @@ public class Empresas extends JFrame {
 		getContentPane().add(btnBorrar);
 		
 		WebButton btnModificar = new WebButton("Modificar");
+		btnModificar.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnModificar.setIcon(new ImageIcon(Empresas.class.getResource("/vista/recursos/editE.png")));
+		btnModificar.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnModificar.setRolloverDecoratedOnly(true);
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(table.getSelectedRowCount() != 1) {
@@ -70,15 +84,19 @@ public class Empresas extends JFrame {
 		getContentPane().add(btnModificar);
 		
 		WebButton btnAceptar = new WebButton("Cargar");
+		btnAceptar.setIcon(new ImageIcon(Empresas.class.getResource("/vista/recursos/loadE.png")));
+		btnAceptar.setRolloverDecoratedOnly(true);
+		btnAceptar.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnAceptar.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cargar();
 			}
 		});
-		btnAceptar.setBounds(310, 21, 80, 80);
+		btnAceptar.setBounds(494, 21, 80, 80);
 		getContentPane().add(btnAceptar);
 		
-		table = new WebTable();
+		table = new ZebraJTable();
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -87,13 +105,13 @@ public class Empresas extends JFrame {
 				}
 			}
 		});
-		table.setEditable(false);
 		WebScrollPane scrollPane = new WebScrollPane(table);
-		scrollPane.setBounds(10, 119, 380, 242);
+		scrollPane.setBounds(10, 119, 564, 242);
 		getContentPane().add(scrollPane);
 		scrollPane.setViewportView(table);
 		table.setAutoCreateRowSorter(true);
 		table.setAutoResizeMode ( WebTable.AUTO_RESIZE_OFF );
+		table.setEditable(false);
 		
 		String[] x = {"Id","Nombre","Fecha creacion","RFC","Domicilio"};
 		modelo.setColumnCount(x.length);
@@ -106,7 +124,7 @@ public class Empresas extends JFrame {
 		if(table.getSelectedRowCount() != 1) {
 			GUI.displayError("Solo puede cargar uno a la vez", "Multiple");
 		} else if(table.getSelectedRow()>=0) {
-			controlador.dataToController("ok",""+table.getValueAt(table.getSelectedRow(),0));
+			controlador.dataToController("ok",""+table.getValueAt(table.getSelectedRow(),0),""+table.getValueAt(table.getSelectedRow(),1));
 			dispose();
 		}
 	}

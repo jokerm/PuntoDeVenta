@@ -13,7 +13,7 @@ public class Departamento extends Controlador{
 	private DefaultTableModel modelo = new DefaultTableModel();
 	
 	public Departamento(WebDesktopPane dsk) {
-		vista.Departamentos dep = new vista.Departamentos(modelo);
+		vista.Gestion dep = new vista.Gestion(modelo,"Departamentos");
 		dep.setControlador(this);
 		dsk.add(dep);
 		dep.open();

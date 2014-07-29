@@ -32,6 +32,9 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
 
 import javax.swing.JSeparator;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
 
 public class Administrador extends JFrame {
 	private static final long serialVersionUID = -7107275893341583544L;
@@ -42,7 +45,7 @@ public class Administrador extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Administrador(controlador.Controlador cont) {
+	public Administrador(controlador.Controlador cont, String emp) {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
@@ -178,6 +181,7 @@ public class Administrador extends JFrame {
 		mnConfiguracion.add(mntmFormasDePago);
 		
 		WebMenuItem mntmPrecioDelDolar = new WebMenuItem("Precio del dolar");
+		mntmPrecioDelDolar.setText("Monedas");
 		mnConfiguracion.add(mntmPrecioDelDolar);
 		
 		WebMenuItem mntmUnidadesDeMedida = new WebMenuItem("Unidades de medida y peso");
@@ -321,6 +325,7 @@ public class Administrador extends JFrame {
 		desktopPane.add(cutButton);
 		
 		WebButton bckupButton = new WebButton("Respaldo");
+		bckupButton.setText("Monedas");
 		bckupButton.setVerticalTextPosition(SwingConstants.BOTTOM);
 		bckupButton.setRolloverDecoratedOnly(true);
 		bckupButton.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -328,6 +333,12 @@ public class Administrador extends JFrame {
 		//bckupButton.addMouseListener(ma1);
 		//bckupButton.addMouseMotionListener(ma1);
 		desktopPane.add(bckupButton);
+		
+		JLabel lblNewLabel = new JLabel("Bienvenido a la empresa "+emp);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel.setBounds(10, 11, 680, 43);
+		desktopPane.add(lblNewLabel);
 		
         // Memory bar that displays allocated and used memory
         WebMemoryBar memoryBar2 = new WebMemoryBar ();
@@ -351,6 +362,7 @@ public class Administrador extends JFrame {
 				try {
 					NotificationManager.showNotification ( "<html><b>El dolar Hoy:</b> " + new Dolar().getDolar() + "<br>" + "<i>Proveido por Google</i></html>");
 				} catch (IOException e) {
+					e.printStackTrace();
 					NotificationManager.showNotification ( "<html><font color='red'>Error al obtener el dolar</font></html>" );
 				}
 			}

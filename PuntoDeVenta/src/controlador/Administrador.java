@@ -24,9 +24,9 @@ public class Administrador extends Controlador implements MouseListener, MouseMo
     private Point startPoint = null;
     private Rectangle startBounds = null;
 	
-	public Administrador(DataBaseManager db) {
+	public Administrador(DataBaseManager db, String emp) {
 		this.manager = db;
-		vista.Administrador admin = new vista.Administrador(this);
+		vista.Administrador admin = new vista.Administrador(this,emp);
 		admin.setLocationRelativeTo(null);
 		admin.setVisible(true);
 	}
